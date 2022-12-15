@@ -145,5 +145,6 @@ inputs/*
 models/*
 outputs/*
 experience/*
+pretrained_model/*
 
 !gitkeep
