@@ -1,0 +1,6 @@
+# 1. 在arch_test中创建新的模型，注意模型的名字
+# 2. 运行create_parameters.py 修改我们要添加的信息（利用todo标注的位置）
+# 3. 新创建的对象保存在 parameters 文件夹里
+# 4. 运行train.py （注意修改利用todo标注的位置）
+# 5. 运行val.py 获得验证信息
+
