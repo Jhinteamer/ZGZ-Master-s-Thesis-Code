@@ -35,6 +35,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
     # TODO
+    # 这里改的是模型的名字
     parser.add_argument('--name', default='SK17_224_UNetWithSAResnet50EncoderandAGsSAP2_woDS',
     help = 'model name')
 

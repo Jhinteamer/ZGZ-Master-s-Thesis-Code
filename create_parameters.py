@@ -37,7 +37,7 @@ def parse_args():
     # 改模型在这里改
     # TODO
 
-    parser.add_argument('--arch', '-a', metavar='ARCH', default='UNetWithSAResnet50EncoderandAGsCBAM',
+    parser.add_argument('--arch', '-a', metavar='ARCH', default='UNetWithSAResnet50EncoderandAGsSAP2',
                         choices=ARCH_NAMES,
                         help='model architecture: ' +
                              ' | '.join(ARCH_NAMES) +
@@ -66,7 +66,7 @@ def parse_args():
     # 该数据集位置
     # TODO
 
-    parser.add_argument('--dataset', default='SK16_224',
+    parser.add_argument('--dataset', default='SK18_224',
                         help='dataset name')
     parser.add_argument('--img_ext', default='.png',
                         help='image file extension')
@@ -117,14 +117,14 @@ def main():
             config['name'] = '%s_%s_woDS' % (config['dataset'], config['arch'])
 
 
-    os.makedirs('parameters/%s' % config['name'], exist_ok=True)
+    os.makedirs('./parameters/%s' % config['name'], exist_ok=True)
 
     print('-' * 20)
     for key in config:
         print('%s: %s' % (key, config[key]))
     print('-' * 20)
 
-    with open('parameters/%s/config.yml' % config['name'], 'w') as f:
+    with open('./parameters/%s/config.yml' % config['name'], 'w') as f:
         yaml.dump(config, f)
 if __name__ == '__main__':
     main()
