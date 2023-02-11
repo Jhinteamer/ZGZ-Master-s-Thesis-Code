@@ -434,7 +434,7 @@ def _sanet(arch, block, layers, pretrained, **kwargs):
 
     # 暂时不去读与训练模型
     if pretrained:
-        state_dict = load_state_dict('E:/ZGZ/pytorch-nested-unet-master/pretrained_model/sa_resnet50/sa_resnet50_210310.pth.tar')
+        state_dict = load_state_dict('./pretrained_model/sa_resnet50/sa_resnet50_210310.pth.tar')
         model.load_state_dict(state_dict, strict=False)
     return model
 

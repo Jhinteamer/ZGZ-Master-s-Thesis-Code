@@ -611,8 +611,8 @@ def main():
     # print(net)
     input = torch.rand(1, 3, 160, 224)
 
-    print(net(input).shape)
-    # stat(net, (3, 160, 224))
+    # print(net(input).shape)
+    stat(net, (3, 160, 224))
 
 
 if __name__ == '__main__':

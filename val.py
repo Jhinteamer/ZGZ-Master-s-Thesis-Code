@@ -26,7 +26,7 @@ def parse_args():
 
     # TODO
     # 这里决定读models的哪个文件
-    parser.add_argument('--name', default='SK17_224_UNetWithSAResnet50EncoderandAGsSAP2_woDS',
+    parser.add_argument('--name', default='SK17_224_UNetWithSAResnet50EncoderandAGsSAORI_woDS',
                         help='model name')
 
     args = parser.parse_args()
@@ -143,8 +143,17 @@ def main():
     avg_meter_pc = AverageMeter()
     avg_meter_f1 = AverageMeter()
 
-    for c in range(config['num_classes']):
-        os.makedirs(os.path.join('outputs', config['name'], str(c)), exist_ok=True)
+    output_file_name = []
+
+    if val == "valid":
+        for c in range(config['num_classes']):
+            os.makedirs(os.path.join('outputs', config['name'], str(c)), exist_ok=True)
+            output_file_name.append(os.path.join('outputs', config['name'], str(c)))
+    elif val == "test":
+        for c in range(config['num_classes']):
+            os.makedirs(os.path.join('outputs', config['name'] + "_test_mod", str(c)), exist_ok=True)
+            output_file_name.append(os.path.join('outputs', config['name'] + "_test_mod", str(c)))
+
     with torch.no_grad():
         for input, target, meta in tqdm(val_loader, total=len(val_loader)):
             input = input.cuda()
@@ -174,7 +183,7 @@ def main():
 
             for i in range(len(output)):
                 for c in range(config['num_classes']):
-                    cv2.imwrite(os.path.join('outputs', config['name'], str(c), meta['img_id'][i] + '.jpg'),
+                    cv2.imwrite(os.path.join(output_file_name[c], meta['img_id'][i] + '.jpg'),
                                 (output[i, c] * 255).astype('uint8'))
 
     print('Pixel Acc: %.4f' % avg_meter_pa.avg)
